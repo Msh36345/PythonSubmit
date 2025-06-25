@@ -8,9 +8,9 @@ import time
 
 def calculator():
     print("\n👋 Welcome to the Area Shape Resolver Calculator!")
-    time.sleep(2)
 
     while True:
+        time.sleep(2)
         print("""\033[93m
         ===============================================
         ||      Area Shape Resolver Calculator       ||

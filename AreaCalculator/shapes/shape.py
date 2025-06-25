@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class Shape(ABC):
     def __init__(self):
-        self.name=self.__class__.__name__
+        self.type=self.__class__.__name__
 
     @abstractmethod
     def get_area(self):
@@ -12,7 +12,7 @@ class Shape(ABC):
         pass
 
     def __str__(self):
-        return ', '.join(f"{key}={val}" for key,val in vars(self).items())
+        return f"Shape = {self.__class__.__name__}, area = {self.get_area()}, perimeter = {self.get_perimeter()}"
 
     def __repr__(self):
         return f"{self.__class__.__name__} : {', '.join(f"{key}={val}" for key,val in vars(self).items())}"

@@ -1,5 +1,5 @@
 import math
-from shape import Shape
+from .shape import Shape
 
 class Hexagon(Shape):
     def __init__(self, side):
