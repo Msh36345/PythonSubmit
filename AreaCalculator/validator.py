@@ -7,10 +7,10 @@ class Validator:
                 b + c > a
         )
     @staticmethod
-    def get_valid_number():
+    def get_valid_number(text):
         while True:
             try:
-                inpt=float(input())
+                inpt=float(input(text))
                 if inpt>0:
                     return inpt
                 else:

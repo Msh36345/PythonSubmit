@@ -1,4 +1,4 @@
-from rectangle import Rectangle
+from shapes.rectangle import Rectangle
 
 class Square(Rectangle):
     def __init__(self, side):
