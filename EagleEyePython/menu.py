@@ -7,9 +7,9 @@ def menu():
     print("\033[96m" + """============================================
 ||  👋 Welcome to the Eagle Eye Project!  ||
 ============================================""" + "\033[0m")
+    time.sleep(2)
 
     while True:
-        time.sleep(2)
         print("""\033[93m=========================
 ||     Main Menu       ||
 =========================
@@ -28,18 +28,22 @@ def menu():
             case 3:
                 wiew_menu()
             case 4:
-                print("Exiting calculator... 👋")
+                print("\033[96m" + """
+=======================
+||   👋 Bye Bye 👋   ||
+=======================""" + "\033[0m")
                 break
 def update_menu():
     while True:
-        print("""\034[93m=========================
-    ||     Update Menu     ||
-    =========================
-    ||  1.Update Mission   ||
-    ||  2.Update Location  ||
-    ||  3.Update Status    ||
-    ||  4.Back             ||
-    =========================\033[0m""")
+        print("""\033[94m
+=========================
+||     Update Menu     ||
+=========================
+||  1.Update Mission   ||
+||  2.Update Location  ||
+||  3.Update Status    ||
+||  4.Back             ||
+=========================\033[0m""")
         choice = manager._get_input_num(4)
 
         match choice:
@@ -53,23 +57,26 @@ def update_menu():
                 break
 def wiew_menu():
     while True:
-        print("""\034[93m=============================
-    ||        View Menu        ||
-    =============================
-    ||    1.View All Agents    ||
-    ||  2.View Agent By Status ||
-    ||  3.View Agent By Location   ||
-    ||  4.Back             ||
-    =============================\033[0m""")
+        print("""\033[94m
+===============================
+||        View Menu          ||
+===============================
+||  1.View All Agents        ||
+||  2.View Agent By Status   ||
+||  3.View Agent By Location ||
+||  4.Back                   ||
+===============================\033[0m""")
         choice = manager._get_input_num(4)
 
         match choice:
             case 1:
-                manager.update_agent_mission()
+                agents=manager.get_all_agents()
+                for agent in agents:
+                    print(agent)
             case 2:
-                manager.update_agent_location()
+                manager.get_agents_by_status()
             case 3:
-                manager.update_agent_status()
+                manager.get_agents_by_location()
             case 4:
                 break
 

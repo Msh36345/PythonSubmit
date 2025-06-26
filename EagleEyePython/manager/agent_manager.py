@@ -8,21 +8,23 @@ class AgentManager:
     def create_agent(self):
         codeName=input("Enter code name : ")
         realName=input("Enter real name : ")
-        location=input("Enter location : ")
+        location=self._choice_location()
         agent=Agent(codeName,realName,location)
         self.dal.add_agent(agent)
-
+        print("\033[37m"+f"Agent {agent.code_name} created successfully.\033[0m")
 
     def update_agent_mission(self):
         agent = self._choice_agent()
         agent.mission_completed+=1
         self.dal.update_agent(agent)
+        print("\033[37m"+f"Agent {agent.code_name} mission count updated.\033[0m")
 
     def update_agent_location(self):
         agent = self._choice_agent()
         new_location=self._choice_location()
         agent.location=new_location
         self.dal.update_agent(agent)
+        print("\033[37m"+f"Agent {agent.code_name} location updated.\033[0m")
 
     def update_agent_status(self):
         agent = self._choice_agent()
@@ -33,6 +35,7 @@ class AgentManager:
         if new_status=="Retired":
             agent.location="Unspecified"
         self.dal.update_agent(agent)
+        print("\033[37m"+f"Agent {agent.code_name} status updated.\033[0m")
 
 
     def get_all_agents(self):
