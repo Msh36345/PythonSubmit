@@ -11,3 +11,7 @@ selected_student = st.selectbox("Select student", group_students)
 
 student_data = data[(data['Group'] == selected_group) & (data['Student'] == selected_student)]
 st.line_chart(student_data.set_index('Year')[['Math', 'Science', 'History', 'Geography', 'English']])
+
+button = st.button("See Code")
+if button:
+    st.image("student.py.png")
