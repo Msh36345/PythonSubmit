@@ -1,3 +1,5 @@
 import streamlit as st
+import pandas as pd
 
-st.write("hello")
+data = pd.read_csv('school_scores.csv')
+st.write(data)
