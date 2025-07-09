@@ -29,17 +29,26 @@ for col in df.columns:
     counter = (df[col].value_counts(dropna=False)).to_dict()
     counts={}
     for key,val in counter.items():
-        counts[key]=val/rows
+        if val==0:
+            counts[key]=1/rows+1
+        else:
+            counts[key]=val/rows
     column_word_counts[col] = counts
 
-print(f"rows : {rows}")
-for col, counts in column_word_counts.items():
-    print(f"\ncol: {col}")
-    for word, count in counts.items():
-        print(f"{word}: {count}")
+print(column_word_counts)
 
 inpt={}
 for col in columns_for_comparison:
     inpt[col]=input(f"input {col} :")
+
+
+res={}
+for possibility,num in column_word_counts[column_to_fill].items():
+    res_num=num
+    for key,val in inpt.items():
+        res_num*=column_word_counts[key][val]
+    res[possibility]=res_num
+print(res)
+
 
 
