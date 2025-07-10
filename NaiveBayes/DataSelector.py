@@ -1,10 +1,9 @@
 from Log import log
 class DataSelector:
 
-    def __init__(self,data,columns,rows,col_fill):
+    def __init__(self,data,columns,col_fill):
         self.full_data=data
         self.columns=columns
-        self.rows=rows
         self.column_to_fill = col_fill
         self.columns_for_comparison = [col for col in self.columns if col != self.column_to_fill]
 
