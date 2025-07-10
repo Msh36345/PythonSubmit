@@ -61,11 +61,15 @@ class DataLoader:
                 else:
                     counter = (sub_df[col].value_counts(dropna=False)).to_dict()
                     counts = {}
+                    all_possible_values = self.df[col].unique()
                     for key, val in counter.items():
                         if val == 0:
                             counts[key] = 1 / self.rows + 1
                         else:
                             counts[key] = val / self.rows
+                    for val in all_possible_values:
+                        if val not in counts:
+                            counts[val] = 1
                     unique_word_counts[col] = counts
             column_word_counts[unique] = unique_word_counts
         log(f"70 percent of data : {column_word_counts}")
