@@ -2,8 +2,9 @@ from DataLoader import DataLoader
 from DataSelector import DataSelector
 
 class Manager:
-    def __init__(self,path):
-        self.data=DataLoader(path,self.ask_column_to_fill())
+    def __init__(self,path,menu):
+        # self.data=DataLoader(path,self.ask_column_to_fill())
+        self.data=DataLoader(path,False)
         self.col=self.data.get_columns()
         self.rows=self.data.get_rows()
         self.full_data=self.data.get_full_data()
@@ -11,7 +12,8 @@ class Manager:
         self.tree=self.data.get_thirty_percent_rows()
         self.col_fill=self.data.column_to_fill
         self.sel=DataSelector(self.full_data,self.col,self.col_fill)
-        self.menu()
+        if menu:
+            self.menu()
 
     def tester(self):
         result = self.sel.tester(self.seven, self.tree)
@@ -20,6 +22,9 @@ class Manager:
     def input_data(self):
         res = self.sel.ask_for_input()
         print(self.sel.get_in_percentages(res))
+
+    def det_dict(self,dict):
+        return self.sel.check_dict(dict)
 
     def ask_column_to_fill(self):
         inpt = input("Would you like to choose a column to fill? True/False : ").strip().lower()
@@ -45,6 +50,6 @@ class Manager:
 
 
 if __name__ == "__main__":
-    # path = '/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/buys computer.csv'
-    path='/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/phishing.csv'
-    Manager(path)
+    path = '/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/buys computer.csv'
+    # path='/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/phishing.csv'
+    manager = Manager(path,True)

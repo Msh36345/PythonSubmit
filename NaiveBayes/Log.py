@@ -1,5 +1,5 @@
 class Logger:
-    enabled = False
+    enabled = True
 
     @staticmethod
     def print(text):

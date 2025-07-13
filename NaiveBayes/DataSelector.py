@@ -30,6 +30,11 @@ class DataSelector:
         res = self.check_row(inpt, self.full_data)
         return res
 
+    def check_dict(self, input_dict):
+        log(f"user input : {input_dict}")
+        res = self.check_row(input_dict, self.full_data)
+        return self.get_in_percentages(res)
+
     def check_row(self,check,data):
         res = {}
         for keyy,vall in data.items():
