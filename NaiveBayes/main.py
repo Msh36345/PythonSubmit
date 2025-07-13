@@ -44,6 +44,7 @@ class Manager:
             self.menu()
 
 
-# path = '/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/buys computer.csv'
-path='/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/phishing.csv'
-Manager(path)
+if __name__ == "__main__":
+    # path = '/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/buys computer.csv'
+    path='/Users/mosheshulman/PycharmProjects/Data/PythonProjectsSubmi/NaiveBayes/csv/phishing.csv'
+    Manager(path)

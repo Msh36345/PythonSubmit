@@ -10,7 +10,6 @@ class DataLoader:
         self.columns = self.df.columns.to_list()
         self.column_to_fill = self.columns[self.ask_column_to_fill(ask)]
 
-        
     def ask_column_to_fill(self,ask):
         if ask:
             for i, col in enumerate(self.columns):
