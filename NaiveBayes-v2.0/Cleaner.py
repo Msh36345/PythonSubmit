@@ -4,6 +4,7 @@ class Cleaner:
     def __init__(self,df):
         self.df=df.drop_duplicates()
         self.drop_index_column()
+        self.df = self.df.sample(frac=1, random_state=42)
         self.drop_empty_rows()
         self.log_table_info()
 
