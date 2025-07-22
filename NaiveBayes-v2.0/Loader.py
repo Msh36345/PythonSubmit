@@ -5,12 +5,12 @@ class Loader:
 
     def __init__(self,path):
         self.df = pd.read_csv(path)
-        self.path = path
+        self.log_table_info(path)
 
     def get_data(self):
         return self.df
 
-    def log_table_info(self):
+    def log_table_info(self,path):
         rows, cols = self.df.shape
-        log(f"Data Frame create from '{self.path}' | Rows: {rows} | Columns: {cols}")
+        log(f"Data Frame create from '{path}' | Rows: {rows} | Columns: {cols}")
 
