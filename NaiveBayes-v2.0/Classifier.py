@@ -16,7 +16,9 @@ class Classifier:
                 if col_value == self.column_to_fill:
                     continue
                 else:
-                    res_num *= unique_word_counts[col_value][sum_value]
+                    # res_num *= unique_word_counts[col_value][sum_value]
+                    value = unique_word_counts[col_value].get(sum_value, 1e-6)
+                    res_num *= value
             res[target_value] = res_num
         res_percentages = self.trainer.get_in_percentages(res)
         log(f"result validation : {res_percentages}")
