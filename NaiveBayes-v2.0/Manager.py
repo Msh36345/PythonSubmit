@@ -15,9 +15,17 @@ class Manager:
         self.classifier = Classifier(self.clean_data)
         self.result = self.classifier.run_validation(dic_of_row)
 
-    def run(self):
+    def run_testing(self):
         answer = f"The analysis was {self.accuracy}% accurate.\nPredicted answer probability:\n"
         for probability,percentages in self.result.items():
             answer+=f"          {probability} : {percentages}\n"
+        return answer
+
+    def run(self):
+        answer = f"<h3>The analysis was {self.accuracy}% accurate for titanic data.</h3>"
+        answer += "<h4>Predicted answer probability:</h4><ul>"
+        for probability, percentage in self.result.items():
+            answer += f"<li><b>{probability}</b> : {percentage}</li>"
+        answer += "</ul>"
         return answer
 
