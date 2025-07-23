@@ -7,7 +7,8 @@ class Validator:
         self.calculate_70 = int(len(self.df)*0.7)
         self.column_to_fill = self.df.columns.to_list()[-1]
         log(f"Start testing : train {self.calculate_70} rows | test : {len(self.df)-self.calculate_70} rows")
-        self.train_dic = self.create_train_df()
+        self.trainer = Trainer(self.df.iloc[:self.calculate_70])
+        self.train_dic = self.trainer.get_calculate_data()
         self.test_dic = self.create_test_df()
         self.tester()
 
@@ -35,20 +36,7 @@ class Validator:
                 else:
                     res_num *= unique_word_counts[col_value][sum_value]
             res[target_value] = res_num
-        return self.get_in_percentages(res)
-
-    def get_in_percentages(self,dic):
-        sumi=sum(dic.values())
-        dic_percentages={}
-        for key,val in dic.items():
-            percentages=(val / sumi) * 100
-            dic_percentages[key]=f"{round(percentages,2)}%"
-        return dic_percentages
-
-    def create_train_df(self):
-        df_70 = self.df.iloc[:self.calculate_70]
-        trainer = Trainer(df_70)
-        return trainer.get_calculate_data()
+        return self.trainer.get_in_percentages(res)
 
     def create_test_df(self):
         thirty_percent_df = self.df.iloc[self.calculate_70:]

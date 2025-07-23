@@ -34,3 +34,11 @@ class Trainer:
             final_dic[target_value] = unique_word_counts
         log(f"final calculate data : {final_dic}")
         return final_dic
+
+    def get_in_percentages(self,dic):
+        sum_dic_val=sum(dic.values())
+        dic_percentages={}
+        for key,val in dic.items():
+            percentages=(val / sum_dic_val) * 100
+            dic_percentages[key]=f"{round(percentages,2)}%"
+        return dic_percentages
