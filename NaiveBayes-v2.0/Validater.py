@@ -35,7 +35,15 @@ class Validator:
                 else:
                     res_num *= unique_word_counts[col_value][sum_value]
             res[target_value] = res_num
-        return res
+        return self.get_in_percentages(res)
+
+    def get_in_percentages(self,dic):
+        sumi=sum(dic.values())
+        dic_percentages={}
+        for key,val in dic.items():
+            percentages=(val / sumi) * 100
+            dic_percentages[key]=f"{round(percentages,2)}%"
+        return dic_percentages
 
     def create_train_df(self):
         df_70 = self.df.iloc[:self.calculate_70]
