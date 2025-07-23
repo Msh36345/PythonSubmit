@@ -8,11 +8,11 @@ class Classifier:
         self.trainer = Trainer(self.df)
         self.calculate_data= self.trainer.get_calculate_data()
 
-    def run_validation(self,dic_val):
+    def run_validation(self,dic_of_row):
         res = {}
         for target_value,unique_word_counts in self.calculate_data.items():
             res_num = 1
-            for col_value, sum_value in dic_val.items():
+            for col_value, sum_value in dic_of_row.items():
                 if col_value == self.column_to_fill:
                     continue
                 else:

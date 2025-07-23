@@ -8,7 +8,7 @@ class Cleaner:
         self.drop_empty_rows()
         self.log_table_info()
 
-    def get_data(self):
+    def get_clean_data(self):
         return self.df
 
     def drop_index_column(self):
