@@ -26,16 +26,27 @@ class Trainer:
                     counts = {}
                     # Handle missing values
                     for col_value, sum_value in all_col_values.items():
+                        str_col_value = str(col_value)
                         if sum_value == 0:
-                            counts[col_value] = 1 / self.rows + 1
+                            counts[str_col_value] = 1 / self.rows + 1
                         else:
-                            counts[col_value] = sum_value / self.rows
+                            counts[str_col_value] = sum_value / self.rows
                 unique_word_counts[col]=counts
             final_dic[target_value] = unique_word_counts
-        log(f"final calculate data : {final_dic}")
+        # log(f"final calculate data : {final_dic}")
         return final_dic
 
-    def get_in_percentages(self,dic):
+
+    def create_empty_dic(self):
+        all_words_in_col = {}
+        for col in self.columns:
+            if col != self.column_to_fill:
+                all_words_in_col[col] = dict.fromkeys(self.df[col].dropna().unique(), 0)
+        print(all_words_in_col)
+        return all_words_in_col
+
+    @staticmethod
+    def get_in_percentages(dic):
         sum_dic_val=sum(dic.values())
         dic_percentages={}
         for key,val in dic.items():

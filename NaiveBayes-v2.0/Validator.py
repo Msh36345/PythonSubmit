@@ -10,7 +10,6 @@ class Validator:
         self.trainer = Trainer(self.df.iloc[:self.calculate_70])
         self.train_dic = self.trainer.get_calculate_data()
         self.test_dic = self.create_test_df()
-        self.tester()
 
     def tester(self):
         counter = 0
@@ -22,7 +21,7 @@ class Validator:
             rows_counter += 1
             if answer == row_val[self.column_to_fill]:
                 counter += 1
-        log(f"{counter}/{rows_counter}")
+        log(f"tester result : {counter}/{rows_counter}")
         res = (counter / rows_counter) * 100
         return f"{round(res, 2)}%"
 
@@ -34,7 +33,9 @@ class Validator:
                 if col_value == self.column_to_fill:
                     continue
                 else:
-                    res_num *= unique_word_counts[col_value][sum_value]
+                    # res_num *= unique_word_counts[col_value][sum_value]
+                    value = unique_word_counts[col_value].get(sum_value, 1e-6)
+                    res_num *= value
             res[target_value] = res_num
         return self.trainer.get_in_percentages(res)
 
