@@ -23,7 +23,7 @@ class Validator:
                 counter += 1
         log(f"tester result : {counter}/{rows_counter}")
         res = (counter / rows_counter) * 100
-        return f"{round(res, 2)}%"
+        return f"{round(res, 2)}"
 
     def run_validation(self,row_val,train_dic):
         res = {}

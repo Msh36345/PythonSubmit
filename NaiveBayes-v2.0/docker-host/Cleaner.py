@@ -6,6 +6,7 @@ class Cleaner:
         self.drop_index_column()
         self.df = self.df.sample(frac=1, random_state=42)
         self.drop_empty_rows()
+        self.convert_all_to_str()
         self.log_table_info()
 
     def get_clean_data(self):
@@ -22,5 +23,9 @@ class Cleaner:
     def log_table_info(self):
         rows, cols = self.df.shape
         log(f"Data Frame cleand | Rows: {rows} | Columns: {cols}")
+
+    def convert_all_to_str(self):
+        self.df = self.df.applymap(lambda x: str(x) if isinstance(x, (int, float)) else x)
+        log("All int and float values converted to string in Data Frame")
 
 
