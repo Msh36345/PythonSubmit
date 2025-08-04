@@ -11,21 +11,21 @@ class DataAnalyzer:
         return len(data)
 
     def get_average(self,data):
-        return data["Text"].mean()
+        return data["Text"].str.len().mean()
 
     def get_3_length_tweets(self,data):
-        return data.loc[data['Text'].str.len().nlargest(3).index]
+        return data.loc[data['Text'].str.len().nlargest(3).index,'Text'].tolist()
 
-    def get_10_most_comments_words(self,data):
-        words = self.col_text_to_list(data).lower()
-        counter_dic = Counter(words).most_common(10)
+    def get_10_most_comments_words(self):
+        words = self.col_text_to_list(self.data).lower().split(" ")
+        counter_list = Counter(words).most_common(10)
         most_comments_words=""
-        for key,val in counter_dic.items():
-            most_comments_words+=f"{val}, "
-        return most_comments_words
+        for word, counet in counter_list:
+            most_comments_words+=f"{word}, "
+        return most_comments_words[0:-2]
 
     def get_sum_big_words(self,data):
-        words = self.col_text_to_list(data)
+        words = self.col_text_to_list(data).split(" ")
         count=0
         for word in words:
             if word.isupper():
@@ -36,5 +36,5 @@ class DataAnalyzer:
         all_words=""
         for row in data['Text']:
             all_words += f"{row} "
-        all_words.replace("," or ".","").split(" ")
+        all_words = all_words.replace(",", "").replace(".", "")
         return all_words
