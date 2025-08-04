@@ -5,6 +5,7 @@ class DataAnalyzer:
         self.data = data
         self.antisemitic = self.data[self.data['Biased'] == '1']
         self.non_antisemitic = self.data[self.data['Biased'] == '0']
+        self.unspecified = self.data[(self.data['Biased'] != '0') & (self.data['Biased'] != '1')]
         self.lists_data = [self.data,self.antisemitic,self.non_antisemitic]
 
     def get_sum_tweets(self, data):
@@ -16,11 +17,11 @@ class DataAnalyzer:
     def get_3_length_tweets(self,data):
         return data.loc[data['Text'].str.len().nlargest(3).index,'Text'].tolist()
 
-    def get_10_most_comments_words(self):
-        words = self.col_text_to_list(self.data).lower().split(" ")
+    def get_10_most_comments_words(self,data):
+        words = self.col_text_to_list(data).lower().split(" ")
         counter_list = Counter(words).most_common(10)
         most_comments_words=""
-        for word, counet in counter_list:
+        for word, count in counter_list:
             most_comments_words+=f"{word}, "
         return most_comments_words[0:-2]
 

@@ -6,10 +6,10 @@ class DataCleaner:
 
     def data_cleaner(self):
         for index,row in self.clean_data.iterrows():
-            self.remove_Punctuation_marks(row)
+            self.remove_punctuation_marks(row)
             self.convert_to_lower(row)
 
-    def remove_Punctuation_marks(self,row):
+    def remove_punctuation_marks(self,row):
         row['Text'] = row['Text'].replace("." ,"").replace("," ,"").replace(":" ,"")
 
     def convert_to_lower(self,row):
